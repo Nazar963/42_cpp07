@@ -1,14 +1,19 @@
 CC = c++ -Wall -Wextra -Werror -std=c++98
 CFILES = main.cpp
-NAME = arraya
+OFILES = $(CFILES:.cpp=.o)
+NAME = array
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) -g $(CFILES) Array.hpp -o $(NAME)
+%.o: %.cpp
+	@$(CC) -g -c $< -o $@
+
+$(NAME): $(OFILES)
+	$(CC) -g $(OFILES) -o $(NAME)
 
 clean:
 	rm $(NAME)
+	rm *.o
 
 fclean: clean
 
